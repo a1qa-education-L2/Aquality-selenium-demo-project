@@ -59,8 +59,10 @@ namespace Test.Web.Tests
             Assert.Multiple(()=> {
                 quickSearchFormSteps.ClickPaymentType(PaymentType.Price);
                 quickSearchFormSteps.ChecPaymentType(PaymentType.Price);
-                quickSearchFormSteps.SetMake(testData.Make);
+                quickSearchFormSteps.ModelComboBoxIsDisplayed();
                 quickSearchFormSteps.SetModel(testData.Model);
+                quickSearchFormSteps.MakeComboBoxIsDisplayed();
+                quickSearchFormSteps.SetMake(testData.Make);
                 quickSearchFormSteps.InputTextToCityOrZIPCodeAndCheckIt();
                 quickSearchFormSteps.ClickSearchButton();
             });
