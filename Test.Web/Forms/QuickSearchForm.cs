@@ -41,23 +41,13 @@ namespace Test.Web.Forms
 
         public void ClickPaymentType(PaymentType paymentType) => PaymentRadioButton(paymentType).Click();
 
-        public void SetValueModelComboBox(string text)
-        {
-            AqualityServices.ConditionalWait.WaitForTrue(
-                () => { return ModelComboBox.State.IsDisplayed; }, 
-                TimeSpan.FromSeconds(ProjectConstants.Timeout), TimeSpan.FromSeconds(ProjectConstants.PollingInterval),
-                "Model combo box should be presented");
-            ModelComboBox.SelectByText(text);
-        }
+        public bool IsModelComboBoxDisplayed => ModelComboBox.State.WaitForDisplayed();
 
-        public void SetValueMakeComboBox(string text)
-        {
-            AqualityServices.ConditionalWait.WaitForTrue( 
-                () => { return MakeComboBox.State.IsDisplayed; }, 
-                TimeSpan.FromSeconds(ProjectConstants.Timeout), TimeSpan.FromSeconds(ProjectConstants.PollingInterval),
-                "Make combo box should be presented");
-            MakeComboBox.SelectByText(text);
-        }
+        public bool IsMakeComboBoxDisplayed => MakeComboBox.State.WaitForDisplayed();
+
+        public void SetValueModelComboBox(string text) => ModelComboBox.SelectByText(text);
+
+        public void SetValueMakeComboBox(string text) => MakeComboBox.SelectByText(text);
 
         public void SetValueFirstRegistrationFromComboBox(string text) => FirstRegistrationFromComboBox.SelectByText(text);
     }

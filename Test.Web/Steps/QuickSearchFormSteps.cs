@@ -37,6 +37,18 @@ namespace Test.Web.Steps
             quickSearchForm.ClickPaymentType(paymentType);
         }
 
+        public void ModelComboBoxIsDisplayed()
+        {
+            LogAssertion();
+            Assert.IsTrue(quickSearchForm.IsModelComboBoxDisplayed, "Model ComboBox should be displayed");
+        }
+
+        public void MakeComboBoxIsDisplayed()
+        {
+            LogAssertion();
+            Assert.IsTrue(quickSearchForm.IsMakeComboBoxDisplayed, "Make ComboBox should be displayed");
+        }
+
         public void SetModel(string model)
         {
             LogStep(nameof(SetModel) + $"Model - [{model}]");

@@ -1,4 +1,5 @@
 ﻿using Aquality.Selenium.Elements;
+using OpenQA.Selenium;
 using System;
 using System.Linq;
 using static Aquality.Selenium.Browsers.AqualityServices;
@@ -25,18 +26,14 @@ namespace TASMU.Autotests.Web.Utils
 
         public static string GetCurrentWindowName() => Browser.Driver.CurrentWindowHandle;
 
-        public static object ExecuteScript(string script)
-        {
-           return Browser.Driver.ExecuteScript(script);
-        }
-
+        public static object ExecuteScript(string script) => Browser.Driver.ExecuteScript(script);
+ 
         public static void SwitchToDefaultContent() => Browser.Driver.SwitchTo().DefaultContent();
 
         public static void ScrollWindowBy(int x, int y) => Browser.ScrollWindowBy(x, y);
 
-        public static string GetCurrentUrl()
-        {
-            return Browser.CurrentUrl;
-        }
+        public static string GetCurrentUrl() => Browser.CurrentUrl;
+
+        public static void AddСookiesByKey(string key, string value) => Browser.Driver.Manage().Cookies.AddCookie(new Cookie(key, value));
     }
 }
