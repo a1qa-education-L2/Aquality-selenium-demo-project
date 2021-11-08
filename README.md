@@ -1,5 +1,7 @@
 # Демо проект по работе  с корпоративным фреймворком Aquality selenium dotnet
 
+# Класс DemoTest реализует следующие тест-кейсы:
+
 # TC - TC-0001 Check the possibility to change the language from German to English
 
 1) Перейти по url - https://www.mobile.de
