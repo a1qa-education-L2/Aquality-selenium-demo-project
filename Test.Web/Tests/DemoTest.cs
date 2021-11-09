@@ -10,6 +10,8 @@ namespace Test.Web.Tests
 {
     public class DemoTest : BaseTest
     {
+        private const string FullPageSizeJS = "return document.body.scrollHeight";
+
         private readonly HeaderFormSteps headerFormSteps = new HeaderFormSteps();
         private readonly CookiesSteps cookiesSteps = new CookiesSteps();
         private readonly LoginOrRegistrationPageSteps loginOrRegistrationPageSteps = new LoginOrRegistrationPageSteps();
@@ -68,8 +70,8 @@ namespace Test.Web.Tests
             });
             searchResultFormSteps.SearchResultFormIsPresent();
             searchResultFormSteps.CheckCountOfDispalayedAdMoreThanFive();
-            var pageHeight = (int)(long)BrowserUtils.ExecuteScript("return document.body.scrollHeight");
-            BrowserUtils.ScrollWindowBy(0, pageHeight);
+            var fullPageHeight = (int)(long)BrowserUtils.ExecuteScript(FullPageSizeJS);
+            BrowserUtils.ScrollWindowBy(0, fullPageHeight);
             footerFormSteps.FooterFormIsPresent();
         }
     }
