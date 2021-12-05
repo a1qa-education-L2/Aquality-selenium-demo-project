@@ -14,15 +14,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\settings.json" />
     <None Remove="Resources\TestData\LoginUser.json" />
     <None Remove="Resources\TestData\TestData.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\settings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\TestData\LoginUser.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -34,9 +30,9 @@
   <ItemGroup>
     <PackageReference Include="Aquality.Selenium" Version="3.0.1" />
     <PackageReference Include="Aquality.Selenium.Core" Version="1.6.1" />
-    <PackageReference Include="Humanizer" Version="2.11.10" />
+    <PackageReference Include="Humanizer" Version="2.13.14" />
     <PackageReference Include="NUnit" Version="3.13.2" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
   </ItemGroup>
 
@@ -44,6 +40,21 @@
     <Resource Include="Resources\settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Models\LoginUser.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Update="Models\TestData.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

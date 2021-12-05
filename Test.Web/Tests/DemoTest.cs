@@ -1,3 +1,5 @@
+using Aquality.Selenium.Core.Configurations;
+using Aquality.Selenium.Core.Visualization;
 using NUnit.Framework;
 using TASMU.Autotests.Web.Utils;
 using Test.Web.Base;
@@ -73,6 +75,19 @@ namespace Test.Web.Tests
             var fullPageHeight = (int)(long)BrowserUtils.ExecuteScript(FullPageSizeJS);
             BrowserUtils.ScrollWindowBy(0, fullPageHeight);
             footerFormSteps.FooterFormIsPresent();
+        }
+
+        [Test(Description = "TC-0004 Сheck the login or registration page is correct in visual testing")]
+        public void TC0004_СheckCookiesForIsCorrectWithVisualTesting()
+        {
+            headerFormSteps.HeaderFormIsPresent();
+            headerFormSteps.CheckLanguages(Country.Germany);
+            headerFormSteps.ClickLogin();
+            loginOrRegistrationPageSteps.LoginOrRegistrationPageIsPresent();
+            loginOrRegistrationPageSteps.CheckVisualElementsPresent();
+            //loginOrRegistrationPageSteps.DumpSave(); - этот метод используется локально, только для заполнения дампа изображений.
+            var compareResult = loginOrRegistrationPageSteps.DumpCompare();
+            Assert.AreEqual(compareResult, 0, "The login or registration page should contain the correct visual elements");
         }
     }
 }

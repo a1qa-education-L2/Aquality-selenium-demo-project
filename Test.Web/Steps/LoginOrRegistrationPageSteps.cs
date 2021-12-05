@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Aquality.Selenium.Core.Configurations;
+using Aquality.Selenium.Core.Visualization;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,6 +28,7 @@ namespace Test.Web.Steps
             LogAssertion();
             loginOrRegistrationPage.AssertIsPresent();
         }
+
         public void ClickLoginTabButton()
         {
             LogStep();
@@ -58,7 +61,29 @@ namespace Test.Web.Steps
 
         public void CheckWarningMessageIsPresent()
         {
+            LogAssertion();
             Assert.IsTrue(loginOrRegistrationPage.IsWarningMessagePresent, "Warning message should be displayed");
+        }
+
+        public void CheckVisualElementsPresent()
+        {
+            LogAssertion();
+            Assert.Multiple(() => {
+                Assert.IsTrue(loginOrRegistrationPage.IsHeaderPresent, "Header should be displayed");
+                Assert.IsTrue(loginOrRegistrationPage.IsDefaultPanelFormboxPresent, "Default Panel Formbox should be displayed");
+                Assert.IsTrue(loginOrRegistrationPage.IsLogInfoPresent, "Log Info should be displayed");
+                Assert.IsTrue(loginOrRegistrationPage.IsRowPageFooterPresent, "Row Page Footer should be displayed");
+            });
+        }
+
+        public void DumpSave()
+        {
+            loginOrRegistrationPage.Dump.Save();
+        }
+
+        public float DumpCompare()
+        {
+           return loginOrRegistrationPage.Dump.Compare();
         }
     }
 }

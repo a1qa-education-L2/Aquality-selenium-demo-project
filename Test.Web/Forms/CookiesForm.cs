@@ -10,9 +10,9 @@ namespace Test.Web.Forms
     public class CookiesForm : Form
     {
         private IButton AcceptCookiesButton => 
-            FormElement.FindChildElement<IButton>(By.XPath("//button[contains(text(),'Einverstanden')]"), "Accept cookies");
+            FormElement.FindChildElement<IButton>(By.XPath("//button[contains(text(),'Accept')]"), "Accept cookies");
 
-        public CookiesForm() : base(By.Id("mde-consent-modal-container"), "Cookies")
+        public CookiesForm() : base(By.XPath("//div[contains(@class,'eGEIRm')]"), "Cookies")
         {
         }
 
