@@ -22,7 +22,7 @@ namespace Test.Web.Forms
 
         private IComboBox FirstRegistrationFromComboBox => ElementFactory.GetComboBox(By.Id("qsfrg"), "First registration from");
 
-        private IRadioButton PaymentRadioButton(PaymentType paymentType) => 
+        private IRadioButton PaymentRadioButton(PaymentType paymentType) =>
             ElementFactory.GetRadioButton(By.Id($"{paymentType.GetId()}"), paymentType.ToString(), ElementState.ExistsInAnyState);
 
         private CustomTextBox CityOrZIPCodeCustomElement => ElementFactory.GetCustomTextBox(By.Id("ambit-search-location"), "City or ZIP code");

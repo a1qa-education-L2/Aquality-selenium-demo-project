@@ -1,7 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Test.Web.Base;
 using Test.Web.Enums;
 using Test.Web.Extensions;

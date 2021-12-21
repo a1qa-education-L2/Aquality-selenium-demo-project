@@ -10,11 +10,11 @@ using Test.Web.Enums;
 
 namespace Test.Web.Forms
 {
-    public class SearchResultForm : Form 
+    public class SearchResultForm : Form
     {
         private const string Locator = "//div[contains(@class,'resultitem dealerAd')]//span[contains(@class,'u-text-break-word')]";
 
-        private IList<ILabel> AdTitles => FormElement.FindChildElements<ILabel>(By.XPath(Locator), expectedCount : ElementsCount.MoreThenZero);
+        private IList<ILabel> AdTitles => FormElement.FindChildElements<ILabel>(By.XPath(Locator), expectedCount: ElementsCount.MoreThenZero);
 
         public SearchResultForm() : base(By.XPath("//div[contains(@class,'cBox--resultList')]"), "Search result form")
         {

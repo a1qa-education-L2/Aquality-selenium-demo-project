@@ -1,14 +1,10 @@
-﻿using Aquality.Selenium.Core.Configurations;
-using Aquality.Selenium.Core.Visualization;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using NUnit.Framework;
 using Test.Web.Base;
 using Test.Web.Constants;
 using Test.Web.Extensions;
 using Test.Web.Forms.Pages;
 using Test.Web.Models;
+using Test.Web.Utilities;
 
 namespace Test.Web.Steps
 {
@@ -68,7 +64,8 @@ namespace Test.Web.Steps
         public void CheckVisualElementsPresent()
         {
             LogAssertion();
-            Assert.Multiple(() => {
+            Assert.Multiple(() =>
+            {
                 Assert.IsTrue(loginOrRegistrationPage.IsHeaderPresent, "Header should be displayed");
                 Assert.IsTrue(loginOrRegistrationPage.IsDefaultPanelFormboxPresent, "Default Panel Formbox should be displayed");
                 Assert.IsTrue(loginOrRegistrationPage.IsLogInfoPresent, "Log Info should be displayed");
@@ -83,7 +80,7 @@ namespace Test.Web.Steps
 
         public float DumpCompare()
         {
-           return loginOrRegistrationPage.Dump.Compare();
+            return loginOrRegistrationPage.Dump.Compare();
         }
     }
 }

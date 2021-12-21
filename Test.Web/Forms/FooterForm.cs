@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Test.Web.Forms
 {
-    public class FooterForm : Form 
+    public class FooterForm : Form
     {
         public FooterForm() : base(By.Id("footer-container"), "Footer form")
         {

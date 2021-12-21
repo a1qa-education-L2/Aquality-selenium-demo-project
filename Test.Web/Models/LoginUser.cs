@@ -1,8 +1,4 @@
-﻿using Aquality.Selenium.Core.Configurations;
-using Aquality.Selenium.Core.Utilities;
-using System.Reflection;
-
-namespace Test.Web.Models
+﻿namespace Test.Web.Models
 {
     public class LoginUser
     {

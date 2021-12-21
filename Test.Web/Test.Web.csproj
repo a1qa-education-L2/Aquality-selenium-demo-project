@@ -29,11 +29,11 @@
 
   <ItemGroup>
     <PackageReference Include="Aquality.Selenium" Version="3.0.1" />
-    <PackageReference Include="Aquality.Selenium.Core" Version="1.6.1" />
     <PackageReference Include="Humanizer" Version="2.13.14" />
     <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,9 +52,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\ImagesForCustomImageComparator\first_test_image.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\ImagesForCustomImageComparator\second_test_image.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\VisualDumps\Login or registration page\Default Panel Formbox.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\VisualDumps\Login or registration page\Header.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\ImagesForCustomImageComparator\" />
   </ItemGroup>
 
 </Project>

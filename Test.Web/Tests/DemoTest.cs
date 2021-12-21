@@ -1,12 +1,11 @@
-using Aquality.Selenium.Core.Configurations;
-using Aquality.Selenium.Core.Visualization;
+using Aquality.Selenium.Browsers;
 using NUnit.Framework;
-using TASMU.Autotests.Web.Utils;
 using Test.Web.Base;
 using Test.Web.Constants;
 using Test.Web.Enums;
 using Test.Web.Models;
 using Test.Web.Steps;
+using Test.Web.Utilities;
 
 namespace Test.Web.Tests
 {
@@ -15,7 +14,7 @@ namespace Test.Web.Tests
         private const string FullPageSizeJS = "return document.body.scrollHeight";
 
         private readonly HeaderFormSteps headerFormSteps = new HeaderFormSteps();
-        private readonly CookiesSteps cookiesSteps = new CookiesSteps();
+        private readonly CookiesFormSteps cookiesSteps = new CookiesFormSteps();
         private readonly LoginOrRegistrationPageSteps loginOrRegistrationPageSteps = new LoginOrRegistrationPageSteps();
         private readonly QuickSearchFormSteps quickSearchFormSteps = new QuickSearchFormSteps();
         private readonly SearchResultFormSteps searchResultFormSteps = new SearchResultFormSteps();
@@ -30,6 +29,12 @@ namespace Test.Web.Tests
             SetScreenExpansionMaximize();
             cookiesSteps.CookiesFormIsPresent();
             cookiesSteps.AcceptCookies();
+        }
+
+        [TearDown]
+        public void AfterEach()
+        {
+            AqualityServices.Browser.Quit();
         }
 
         [Test(Description = "TC-0001 Check the possibility to change the language from German to English")]
@@ -60,7 +65,8 @@ namespace Test.Web.Tests
         {
             headerFormSteps.HeaderFormIsPresent();
             quickSearchFormSteps.QuickSearchFormIsPresent();
-            Assert.Multiple(()=> {
+            Assert.Multiple(() =>
+            {
                 quickSearchFormSteps.ClickPaymentType(PaymentType.Price);
                 quickSearchFormSteps.ChecPaymentType(PaymentType.Price);
                 quickSearchFormSteps.ModelComboBoxIsDisplayed();
@@ -77,15 +83,15 @@ namespace Test.Web.Tests
             footerFormSteps.FooterFormIsPresent();
         }
 
-        [Test(Description = "TC-0004 Сheck the login or registration page is correct in visual testing")]
-        public void TC0004_СheckCookiesForIsCorrectWithVisualTesting()
+        [Test(Description = "TC-0004 Check the login or registration page is correct with visual testing")]
+        public void TC0004_CheckTheLoginOrRegistrationPageIsCorrectWithVisualTesting()
         {
             headerFormSteps.HeaderFormIsPresent();
             headerFormSteps.CheckLanguages(Country.Germany);
             headerFormSteps.ClickLogin();
             loginOrRegistrationPageSteps.LoginOrRegistrationPageIsPresent();
             loginOrRegistrationPageSteps.CheckVisualElementsPresent();
-            //loginOrRegistrationPageSteps.DumpSave(); - этот метод используется локально, только для заполнения дампа изображений.
+            //loginOrRegistrationPageSteps.DumpSave(); - this method is used locally, only to fill the image dump.
             var compareResult = loginOrRegistrationPageSteps.DumpCompare();
             Assert.AreEqual(compareResult, 0, "The login or registration page should contain the correct visual elements");
         }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Test.Web.Enums
 {
@@ -8,12 +6,16 @@ namespace Test.Web.Enums
     {
         [Description("en")]
         English,
+
         [Description("de")]
         Germany,
+
         [Description("Español")]
         Spain,
+
         [Description("Română")]
         Romania,
+
         [Description("Pусский")]
         Russia
     }

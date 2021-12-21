@@ -37,7 +37,7 @@ namespace Test.Web.Forms.Pages
             {"Header", HeaderLabel },
             {"Default Panel Formbox", DefaultPanelFormboxLabel },
             {"Log Info", LogInfoLabel },
-            {"Login or registration page", RowPageFooterLabel },
+            {"Row Page Footer Label", RowPageFooterLabel },
         };
 
         public void ClickLoginTabButton() => LoginTabButton.Click();

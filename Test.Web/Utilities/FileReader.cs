@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Test.Web
+namespace Test.Web.Utilities
 {
     public static class FileReader
     {

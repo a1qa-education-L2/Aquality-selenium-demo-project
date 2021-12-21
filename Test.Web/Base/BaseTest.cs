@@ -25,7 +25,6 @@ namespace Test.Web.Base
         [TearDown]
         public virtual void AfterEach()
         {
-            AqualityServices.Browser.Quit();
             LogScenarioResult();
         }
 

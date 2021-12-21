@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using static Aquality.Selenium.Browsers.AqualityServices;
 
-namespace TASMU.Autotests.Web.Utils
+namespace Test.Web.Utilities
 {
     public static class BrowserUtils
     {
@@ -27,7 +27,7 @@ namespace TASMU.Autotests.Web.Utils
         public static string GetCurrentWindowName() => Browser.Driver.CurrentWindowHandle;
 
         public static object ExecuteScript(string script) => Browser.Driver.ExecuteScript(script);
- 
+
         public static void SwitchToDefaultContent() => Browser.Driver.SwitchTo().DefaultContent();
 
         public static void ScrollWindowBy(int x, int y) => Browser.ScrollWindowBy(x, y);

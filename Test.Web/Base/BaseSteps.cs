@@ -9,9 +9,9 @@ namespace Test.Web.Base
     {
         private static Logger Logger => Logger.Instance;
 
-        protected void LogStep([CallerMemberName] string stepInfo = "")
+        protected void LogStep([CallerMemberName] string stepIno = "")
         {
-            LogStep(stepInfo, stepType: "Action");
+            LogStep(stepIno, stepType: "Action");
         }
 
         protected void LogAssertion([CallerMemberName] string stepInfo = "")
