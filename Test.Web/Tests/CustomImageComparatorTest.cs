@@ -19,7 +19,7 @@ namespace Test.Web.Tests
 
             var compareResult = CustomImageComparator.Compare(firstImage, secondImage);
 
-            Assert.AreEqual(compareResult, 0, "The login or registration page should contain the correct visual elements");
+            Assert.AreEqual(compareResult, 0, "The images should be the same");
         }
     }
 }
