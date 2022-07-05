@@ -1,4 +1,4 @@
-using Aquality.Selenium.Browsers;
+﻿using Aquality.Selenium.Browsers;
 using NUnit.Framework;
 using Test.Web.Base;
 using Test.Web.Constants;
@@ -15,11 +15,8 @@ namespace Test.Web.Tests
 
         private readonly HeaderFormSteps headerFormSteps = new HeaderFormSteps();
         private readonly CookiesFormSteps cookiesSteps = new CookiesFormSteps();
-        private readonly LoginOrRegistrationPageSteps loginOrRegistrationPageSteps = new LoginOrRegistrationPageSteps();
-        private readonly QuickSearchFormSteps quickSearchFormSteps = new QuickSearchFormSteps();
-        private readonly SearchResultFormSteps searchResultFormSteps = new SearchResultFormSteps();
+        private readonly ContactUsFormSteps contactUsFormSteps = new ContactUsFormSteps();
         private readonly FooterFormSteps footerFormSteps = new FooterFormSteps();
-
         private readonly TestData testData = FileReader.ReadJsonData<TestData>(ProjectConstants.PathToTestData);
 
         [SetUp]
@@ -37,63 +34,46 @@ namespace Test.Web.Tests
             AqualityServices.Browser.Quit();
         }
 
-        [Test(Description = "TC-0001 Check the possibility to change the language from German to English")]
-        public void TC0001_CheckThePossibilityToChangeTheLanguageFromGermanToEnglish()
+
+        [Test(Description = "TC-0002 Check all navigation panel elements are present")]
+        public void TC0002_CheckThePossibilityToChangeTheLanguageFromGermanToEnglish()
         {
             headerFormSteps.HeaderFormIsPresent();
-            headerFormSteps.CheckLanguages(Country.Germany);
-            headerFormSteps.ClickLanguageSelection();
-            headerFormSteps.SetCountryLanguage(Country.English);
-            headerFormSteps.CheckLanguages(Country.English);
+            headerFormSteps.ContactUsButtonIsPresent();
+            headerFormSteps.CheckThatNavigationElementsAreCorrect();
+            headerFormSteps.MoveToTheServicesNavigationTab();
+            headerFormSteps.CheckThatServicesTitlesAreDispalayedAndCorrect();
         }
 
-        [Test(Description = "TC-0002 Try logging in with the wrong email and password")]
-        public void TC0002_TryToLogInUnderTheWrongEmailAndPassword()
+        [Test(Description = "TC-0003 Check how the Contact Us form works with an incorrect email")]
+        public void TC0003_CheckHowTheContactUsFormWorksWithAnIncorrectEmail()
         {
             headerFormSteps.HeaderFormIsPresent();
-            headerFormSteps.CheckLanguages(Country.Germany);
-            headerFormSteps.ClickLogin();
-            loginOrRegistrationPageSteps.LoginOrRegistrationPageIsPresent();
-            loginOrRegistrationPageSteps.InputIncorrectCredentionals();
-            loginOrRegistrationPageSteps.ClickLoginInButton();
-            loginOrRegistrationPageSteps.LoginOrRegistrationPageIsPresent();
-            loginOrRegistrationPageSteps.CheckWarningMessageIsPresent();
+            headerFormSteps.ClickContactUs();
+            contactUsFormSteps.ContactUsFormIsPresent();
+            contactUsFormSteps.CheckThatTheContactUsFormElementsAreDisplayed();
+            contactUsFormSteps.CheckThanContactUsTitleIsCorrect();
+            contactUsFormSteps.SetDataForTheAllTextFields();
+            contactUsFormSteps.CheckTermCheckBoxIsCheckedOrNot();
+            contactUsFormSteps.CheckTermCheckBox();
+            contactUsFormSteps.CheckTermCheckBoxIsCheckedOrNot(true);
+            contactUsFormSteps.CheckThatWarningEmailMessageisPresentOrNot();
+            contactUsFormSteps.ClickSendAMessageButton();
+            contactUsFormSteps.CheckThatWarningEmailMessageisPresentOrNot(true);
+            contactUsFormSteps.CheckThatWarningEmailMessageIsCorrect();
         }
 
-        [Test(Description = "TC-0003 Enter the model and make of the car in the search and make sure that the search works")]
-        public void TC0003_EnterTheModelAndMakeOfTheCarInTheSearchAndMakeSurethatTheSearchWorks()
+        [Test(Description = "TC-0004 Check the footer form is correct with visual testing")]
+        public void TC0004_CheckTheFooterFormIsCorrectWithVisualTesting()
         {
             headerFormSteps.HeaderFormIsPresent();
-            quickSearchFormSteps.QuickSearchFormIsPresent();
-            Assert.Multiple(() =>
-            {
-                quickSearchFormSteps.ClickPaymentType(PaymentType.Price);
-                quickSearchFormSteps.ChecPaymentType(PaymentType.Price);
-                quickSearchFormSteps.ModelComboBoxIsDisplayed();
-                quickSearchFormSteps.SetModel(testData.Model);
-                quickSearchFormSteps.MakeComboBoxIsDisplayed();
-                quickSearchFormSteps.SetMake(testData.Make);
-                quickSearchFormSteps.InputTextToCityOrZIPCodeAndCheckIt();
-                quickSearchFormSteps.ClickSearchButton();
-            });
-            searchResultFormSteps.SearchResultFormIsPresent();
-            searchResultFormSteps.CheckCountOfDispalayedAdMoreThanFive();
             var fullPageHeight = (int)(long)BrowserUtils.ExecuteScript(FullPageSizeJS);
             BrowserUtils.ScrollWindowBy(0, fullPageHeight);
             footerFormSteps.FooterFormIsPresent();
-        }
-
-        [Test(Description = "TC-0004 Check the login or registration page is correct with visual testing")]
-        public void TC0004_CheckTheLoginOrRegistrationPageIsCorrectWithVisualTesting()
-        {
-            headerFormSteps.HeaderFormIsPresent();
-            headerFormSteps.CheckLanguages(Country.Germany);
-            headerFormSteps.ClickLogin();
-            loginOrRegistrationPageSteps.LoginOrRegistrationPageIsPresent();
-            loginOrRegistrationPageSteps.CheckVisualElementsPresent();
-            //loginOrRegistrationPageSteps.DumpSave(); - this method is used locally, only to fill the image dump.
-            var compareResult = loginOrRegistrationPageSteps.DumpCompare();
-            Assert.AreEqual(compareResult, 0, "The login or registration page should contain the correct visual elements");
+            footerFormSteps.CheckVisualElementsPresent();
+            //footerFormSteps.DumpSave(); // - this method is used locally, only to fill the image dump.
+            var compareResult = footerFormSteps.DumpCompare();
+            Assert.AreEqual(compareResult, 0, "The footer form should contain the correct visual elements");
         }
     }
 }

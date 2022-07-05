@@ -10,41 +10,30 @@ namespace Test.Web.Forms
 {
     public class HeaderForm : Form
     {
-        private By LanguageCountrysLocator => By.XPath($"//ul[contains(@class,'header-meta-action-dropdown')]/li/a");
+        private IList<ILabel> ServicesTitlesElements => ElementFactory.FindElements<ILabel>(By.XPath("//div[contains(@class,'menu__dropdown')]//h3"), "Service titles");
 
-        private By LanguageCountryLocator(Country country) => By.XPath($"//ul[contains(@class,'header-meta-action-dropdown')]/li/a[text()=\"{country.GetEnumDescription()}\"]");
+        private ILabel LogoLabel => FormElement.FindChildElement<ILabel>(By.XPath("//a[@aria-label='a1qa home page']"), "Logo");
 
-        private ILabel TitleLabel => ElementFactory.GetLabel(By.XPath("//span[contains(@class,'mde-react-header__claim')]"), "Title");
+        private IButton ContactUsButton => ElementFactory.GetButton(By.XPath("//div[contains(@class,'header__contact')]"), "Contact Us");       
 
-        private ILabel LanguageSelectionLabel => ElementFactory.GetLabel(By.XPath("//span[contains(@data-se,'language')]"), "Language selection");
+        private IButton TabButtonByName(string buttonName) => ElementFactory.GetButton(By.XPath($"//nav/ul/li/button[contains(text(),'{buttonName}')]"), $"{buttonName}");
 
-        private IList<ILink> LanguageCountryLinks => ElementFactory.GetNotEmptyElementList<ILink>(LanguageCountrysLocator, "Language countrys");
-
-        private ILink LanguageCountryLink(Country country) => ElementFactory.GetLink(LanguageCountryLocator(country), "Language country");
-
-        private ILink LoginLink => ElementFactory.GetLink(By.Id("hdmylogin"), "Login");
-
+        private IList<ILabel> HeadersTabElements => ElementFactory.GetNotEmptyElementList<ILabel>(By.XPath("(//nav/ul/li/button | //nav/ul/li/a)"), "Header elements");
+        
         public HeaderForm() : base(By.TagName("header"), "Header form")
         {
         }
 
-        public string TitleText => TitleLabel.Text;
+        public bool IsLogoElementDisplayed => LogoLabel.State.IsDisplayed;
 
-        public string SelectedLanguage => LanguageSelectionLabel.GetAttribute("data-selected");
+        public bool IsContactUsButtonExist => ContactUsButton.State.IsExist;
 
-        public void ClickLanguageSelection() => LanguageSelectionLabel.Click();
+        public void ClickContactUs() => ContactUsButton.Click();
 
-        public void ClickLogin() => LoginLink.Click();
+        public IList<string> GetTextForHeaderNavigationElements => HeadersTabElements.Select(x => x.GetText()).ToList();
 
-        public IList<string> GetLanguageCountries()
-        {
-            var tempList = LanguageCountryLinks;
-            return LanguageCountryLinks.Select(item => item.Text).ToList();
-        }
+        public void MoveToTheTabButton(string buttonName) => TabButtonByName(buttonName).MouseActions.MoveToElement();
 
-        public void SetCountryLanguage(Country country)
-        {
-            LanguageCountryLink(country).Click();
-        }
+        public IList<string> GetTextFromServicesTitlesElements => ServicesTitlesElements.Select(x => x.GetText()).ToList();
     }
 }

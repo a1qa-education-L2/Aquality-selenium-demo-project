@@ -14,12 +14,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\TestData\LoginUser.json" />
+    <None Remove="Resources\TestData\ContactUserWithInvalidEmail.json" />
     <None Remove="Resources\TestData\TestData.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\TestData\LoginUser.json">
+    <EmbeddedResource Include="Resources\TestData\ContactUserWithInvalidEmail.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\TestData\TestData.json">
@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Models\LoginUser.cs">
+    <Compile Update="Models\ContactUser.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Update="Models\TestData.cs">
@@ -61,16 +61,11 @@
     <None Update="Resources\settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\VisualDumps\Login or registration page\Default Panel Formbox.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Resources\VisualDumps\Login or registration page\Header.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Resources\ImagesForCustomImageComparator\" />
+    <Folder Include="Resources\VisualDumps\Footer form\" />
   </ItemGroup>
 
 </Project>

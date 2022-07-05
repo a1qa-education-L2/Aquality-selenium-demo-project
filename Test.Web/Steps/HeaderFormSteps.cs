@@ -9,6 +9,9 @@ namespace Test.Web.Steps
     public class HeaderFormSteps : BaseSteps
     {
         private readonly HeaderForm headerForm;
+        private const string ServicesTabItem = "Services";
+        private readonly string[] headerTabItems = { "Services", "Approach", "Portfolio", "Blog", "Company" };
+        private readonly string[] servicesTitleElements = { "Full-cycle testing services", "Quality engineering", "Complete test coverage", "Systems & platforms" };
 
         public HeaderFormSteps()
         {
@@ -21,34 +24,36 @@ namespace Test.Web.Steps
             headerForm.AssertIsPresent();
         }
 
-        public void ClickLogin()
+        public void ClickContactUs()
         {
             LogStep();
-            headerForm.ClickLogin();
+            headerForm.ClickContactUs();
         }
 
-        public void ClickLanguageSelection()
+        public void ContactUsButtonIsPresent()
+        {
+            LogAssertion();
+            Assert.IsTrue(headerForm.IsContactUsButtonExist);
+        }
+
+        public void CheckThatNavigationElementsAreCorrect()
+        {
+            LogAssertion();
+            var headerNavigationElements = headerForm.GetTextForHeaderNavigationElements;
+            CollectionAssert.AreEquivalent(headerTabItems, headerNavigationElements, "Header navigation elements should be correct");
+        }
+
+        public void MoveToTheServicesNavigationTab()
         {
             LogStep();
-            headerForm.ClickLanguageSelection();
+            headerForm.MoveToTheTabButton(ServicesTabItem);
         }
 
-        public string GetTitleText()
+        public void CheckThatServicesTitlesAreDispalayedAndCorrect()
         {
-            LogStep();
-            return headerForm.TitleText;
-        }
-
-        public void SetCountryLanguage(Country country)
-        {
-            LogStep(nameof(SetCountryLanguage) + $"Set country language - [{country}]");
-            headerForm.SetCountryLanguage(country);
-        }
-
-        public void CheckLanguages(Country country)
-        {
-            LogStep(nameof(CheckLanguages) + $"Check country language - [{country}]");
-            Assert.AreEqual(headerForm.SelectedLanguage, country.GetEnumDescription());
+            LogAssertion();
+            var servicesTitlesElements = headerForm.GetTextFromServicesTitlesElements;
+            CollectionAssert.AreEqual(servicesTitleElements, servicesTitlesElements, "Services title elements should be correct");
         }
     }
 }
